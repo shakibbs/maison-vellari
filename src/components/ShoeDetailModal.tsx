@@ -9,15 +9,15 @@ import {
 } from "@/components/ui/dialog";
 import {
   ArrowUpRight,
-  Check,
   Clock,
   Heart,
   MapPin,
-  Scissors,
   ShieldCheck,
+  ShoppingBag,
   Sparkles,
 } from "lucide-react";
 import { toast } from "sonner";
+import { useCart } from "@/context/CartContext";
 
 export interface ShoeProduct {
   name: string;
@@ -43,12 +43,16 @@ const WIDTHS = ["Standard (D)", "Wide (EE)"];
 export function ShoeDetailModal({ shoe, isOpen, onClose }: ShoeDetailModalProps) {
   const [selectedSize, setSelectedSize] = React.useState<string>("EU 42");
   const [selectedWidth, setSelectedWidth] = React.useState<string>("Standard (D)");
+  const [monogram, setMonogram] = React.useState<string>("");
   const [isSaved, setIsSaved] = React.useState<boolean>(false);
+
+  const { addToCart, setIsCheckoutOpen } = useCart();
 
   React.useEffect(() => {
     if (shoe) {
       setSelectedSize("EU 42");
       setSelectedWidth("Standard (D)");
+      setMonogram("");
       setIsSaved(false);
     }
   }, [shoe]);
@@ -62,11 +66,18 @@ export function ShoeDetailModal({ shoe, isOpen, onClose }: ShoeDetailModalProps)
     shoe.description ||
     `Handcrafted in our Florentine atelier using centuries-old lasting techniques. Each pair undergoes 212 meticulous hand operations, featuring a hand-carved wooden last, oak-bark tanned leather soles, and hand-burnished patinas created layer by layer.`;
 
-  const handleReserve = () => {
-    toast.success(`Fitting Reserved for ${shoe.name}`, {
-      description: `Size ${selectedSize} (${selectedWidth}) noted. Our master atelier will contact you for confirmation.`,
+  const handleAddToCart = () => {
+    addToCart(shoe, selectedSize, selectedWidth, monogram);
+    toast.success(`Added ${shoe.name} to Atelier Bag`, {
+      description: `Size ${selectedSize} (${selectedWidth}) ${monogram ? `· Initials: ${monogram.toUpperCase()}` : ""}`,
     });
     onClose();
+  };
+
+  const handleBuyNow = () => {
+    addToCart(shoe, selectedSize, selectedWidth, monogram);
+    onClose();
+    setIsCheckoutOpen(true);
   };
 
   const handleToggleWishlist = () => {
@@ -146,8 +157,8 @@ export function ShoeDetailModal({ shoe, isOpen, onClose }: ShoeDetailModalProps)
             </p>
 
             {/* Specification Grid */}
-            <div className="my-5 rounded-lg border border-border/40 bg-charcoal/40 p-4 text-[0.75rem]">
-              <div className="grid grid-cols-2 gap-y-2">
+            <div className="my-4 rounded-lg border border-border/40 bg-charcoal/40 p-3 text-[0.72rem]">
+              <div className="grid grid-cols-2 gap-y-1.5">
                 <div>
                   <span className="text-muted-foreground">Material:</span>
                   <p className="font-medium text-foreground">{materialDisplay}</p>
@@ -196,7 +207,7 @@ export function ShoeDetailModal({ shoe, isOpen, onClose }: ShoeDetailModalProps)
             </div>
 
             {/* Width Selector */}
-            <div className="mt-4 space-y-2">
+            <div className="mt-3 space-y-1.5">
               <span className="block text-xs font-medium uppercase tracking-wider text-muted-foreground">
                 Fitting Width
               </span>
@@ -218,18 +229,49 @@ export function ShoeDetailModal({ shoe, isOpen, onClose }: ShoeDetailModalProps)
               </div>
             </div>
 
-            {/* Actions */}
-            <div className="mt-6 flex flex-col gap-3 pt-2">
-              <Link
-                to="/contact"
-                onClick={onClose}
-                className="flex items-center justify-center gap-2 rounded-md bg-gold py-3 text-xs font-semibold uppercase tracking-[0.2em] text-primary-foreground shadow-md transition hover:bg-gold/90 cursor-pointer"
-              >
-                Reserve Private Fitting
-                <ArrowUpRight className="h-4 w-4" />
-              </Link>
+            {/* Custom Monogram Field */}
+            <div className="mt-3 space-y-1.5">
+              <div className="flex items-center justify-between text-xs">
+                <span className="font-medium uppercase tracking-wider text-muted-foreground flex items-center gap-1.5">
+                  <Sparkles className="h-3 w-3 text-gold" />
+                  Bespoke Hot-Stamped Monogram
+                </span>
+                <span className="text-[0.65rem] text-gold uppercase tracking-wider">Complimentary</span>
+              </div>
+              <input
+                type="text"
+                maxLength={3}
+                value={monogram}
+                onChange={(e) => setMonogram(e.target.value.toUpperCase())}
+                placeholder="Initials (e.g. J.A.)"
+                className="w-full rounded-md border border-border/60 bg-onyx px-3 py-2 text-xs font-medium uppercase tracking-widest text-foreground placeholder:text-muted-foreground/60 focus:border-gold focus:outline-none"
+              />
+            </div>
 
-              <div className="flex items-center justify-center gap-4 text-[0.7rem] text-muted-foreground">
+            {/* Actions */}
+            <div className="mt-5 flex flex-col gap-2.5 pt-2">
+              <div className="grid grid-cols-2 gap-3">
+                <button
+                  type="button"
+                  onClick={handleAddToCart}
+                  className="flex items-center justify-center gap-2 rounded-md border border-gold bg-gold/10 py-3 text-xs font-semibold uppercase tracking-[0.18em] text-gold transition hover:bg-gold hover:text-primary-foreground cursor-pointer"
+                >
+                  <ShoppingBag className="h-3.5 w-3.5" />
+                  Add to Bag
+                </button>
+
+                <button
+                  type="button"
+                  onClick={handleBuyNow}
+                  className="flex items-center justify-center gap-2 rounded-md bg-gold py-3 text-xs font-semibold uppercase tracking-[0.18em] text-primary-foreground shadow-md transition hover:brightness-110 cursor-pointer"
+                  style={{ boxShadow: "var(--shadow-gold)" }}
+                >
+                  Acquire Now
+                  <ArrowUpRight className="h-3.5 w-3.5" />
+                </button>
+              </div>
+
+              <div className="flex items-center justify-center gap-4 text-[0.68rem] text-muted-foreground pt-1">
                 <span className="flex items-center gap-1">
                   <ShieldCheck className="h-3.5 w-3.5 text-gold" />
                   Lifetime Warranty

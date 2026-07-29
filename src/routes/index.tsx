@@ -467,7 +467,7 @@ function BestSellers({ onSelectShoe }: { onSelectShoe: (shoe: ShoeProduct) => vo
     scroller.current?.scrollBy({ left: dir * 420, behavior: "smooth" });
   };
   return (
-    <section className="py-24 md:py-32">
+    <section className="border-t border-border/30 bg-onyx pt-16 pb-24 md:pt-24 md:pb-32">
       <div className="mx-auto max-w-7xl px-6 md:px-10">
         <div className="flex items-end justify-between gap-4">
           <SectionHeader
@@ -904,9 +904,9 @@ function Home() {
       <Navbar />
       <Hero />
       <Collection onSelectShoe={(shoe) => setSelectedShoe(shoe)} />
+      <BestSellers onSelectShoe={(shoe) => setSelectedShoe(shoe)} />
       <Craft />
       <Materials />
-      <BestSellers onSelectShoe={(shoe) => setSelectedShoe(shoe)} />
       <Heritage />
       <Testimonials />
       <Bespoke />

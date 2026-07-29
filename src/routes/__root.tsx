@@ -8,9 +8,15 @@ import {
   Scripts,
 } from "@tanstack/react-router";
 import { useEffect, type ReactNode } from "react";
+import { Toaster } from "sonner";
 
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
+import { CartProvider } from "../context/CartContext";
+import { AdminAuthProvider } from "../context/AdminAuthContext";
+import { CartDrawer } from "../components/CartDrawer";
+import { CheckoutModal } from "../components/CheckoutModal";
+import { OrderHistoryDrawer } from "../components/OrderHistoryDrawer";
 
 function NotFoundComponent() {
   return (
@@ -45,7 +51,7 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
     <div className="flex min-h-screen items-center justify-center bg-background px-4">
       <div className="max-w-md text-center">
         <h1 className="text-xl font-semibold tracking-tight text-foreground">
-          This page didn't load
+          This page didn'load
         </h1>
         <p className="mt-2 text-sm text-muted-foreground">
           Something went wrong on our end. You can try refreshing or head back home.
@@ -86,7 +92,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
       {
         rel: "stylesheet",
-        href: "https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Inter:wght@300;400;500;600&display=swap",
+        href: "https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap",
       },
     ],
   }),
@@ -104,6 +110,7 @@ function RootShell({ children }: { children: ReactNode }) {
       </head>
       <body>
         {children}
+        <Toaster position="bottom-right" theme="dark" />
         <Scripts />
       </body>
     </html>
@@ -115,8 +122,14 @@ function RootComponent() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
-      <Outlet />
+      <AdminAuthProvider>
+        <CartProvider>
+          <Outlet />
+          <CartDrawer />
+          <CheckoutModal />
+          <OrderHistoryDrawer />
+        </CartProvider>
+      </AdminAuthProvider>
     </QueryClientProvider>
   );
 }
