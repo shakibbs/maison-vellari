@@ -14,6 +14,7 @@ import {
   Sparkles,
 } from "lucide-react";
 import { toast } from "sonner";
+import { Navbar } from "@/components/Navbar";
 
 export const Route = createFileRoute("/contact")({
   head: () => ({
@@ -70,44 +71,6 @@ const ATELIERS = [
   },
 ];
 
-function Nav() {
-  return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-background border-b border-border/60 shadow-lg">
-      <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-5 md:px-10">
-        <Link to="/" className="flex items-center gap-2">
-          <span className="font-serif text-2xl tracking-wide text-foreground">
-            Maison <span className="text-gold italic">Vellári</span>
-          </span>
-        </Link>
-        <nav className="hidden items-center gap-10 text-xs uppercase tracking-[0.28em] text-muted-foreground md:flex">
-          <Link to="/collection" className="transition hover:text-gold">
-            Collection
-          </Link>
-          <Link to="/" hash="craft" className="transition hover:text-gold">
-            Craft
-          </Link>
-          <Link to="/" hash="heritage" className="transition hover:text-gold">
-            Heritage
-          </Link>
-          <Link to="/" hash="bespoke" className="transition hover:text-gold">
-            Bespoke
-          </Link>
-          <Link to="/contact" className="text-gold transition font-medium">
-            Contact
-          </Link>
-        </nav>
-        <Link
-          to="/contact"
-          className="hidden items-center gap-2 rounded-full border border-gold/40 px-5 py-2 text-[0.7rem] uppercase tracking-[0.28em] text-gold transition hover:bg-gold hover:text-primary-foreground md:inline-flex"
-        >
-          Reserve
-          <ArrowUpRight className="h-3.5 w-3.5" />
-        </Link>
-      </div>
-    </header>
-  );
-}
-
 function ContactPage() {
   const [formData, setFormData] = useState({
     name: "",
@@ -141,7 +104,7 @@ function ContactPage() {
 
   return (
     <div className="min-h-screen bg-background text-foreground">
-      <Nav />
+      <Navbar />
 
       {/* Hero Header */}
       <section className="relative overflow-hidden pt-36 pb-20 md:pt-44 md:pb-28">

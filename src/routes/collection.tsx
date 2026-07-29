@@ -9,6 +9,7 @@ import shoeMonk from "@/assets/shoe-monk.jpg";
 import shoeLoafer from "@/assets/shoe-loafer.jpg";
 import heritageImg from "@/assets/heritage.jpg";
 import { ShoeDetailModal, type ShoeProduct } from "@/components/ShoeDetailModal";
+import { Navbar } from "@/components/Navbar";
 
 export const Route = createFileRoute("/collection")({
   head: () => ({
@@ -147,47 +148,6 @@ const PRODUCTS: {
 ];
 
 const CATEGORIES: Category[] = ["All", "Oxford", "Derby", "Monk", "Loafer", "Boot"];
-
-function Nav() {
-  return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-background border-b border-border/60 shadow-lg">
-      <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-5 md:px-10">
-        <Link to="/" className="flex items-center gap-2">
-          <span className="font-serif text-2xl tracking-wide text-foreground">
-            Maison <span className="text-gold italic">Vellári</span>
-          </span>
-        </Link>
-        <nav className="hidden items-center gap-10 text-xs uppercase tracking-[0.28em] text-muted-foreground md:flex">
-          <Link to="/collection" className="text-gold transition">
-            Collection
-          </Link>
-          <Link to="/" hash="craft" className="transition hover:text-gold">
-            Craft
-          </Link>
-          <Link to="/" hash="heritage" className="transition hover:text-gold">
-            Heritage
-          </Link>
-          <Link to="/" hash="bespoke" className="transition hover:text-gold">
-            Bespoke
-          </Link>
-          <Link to="/contact" className="transition hover:text-gold">
-            Contact
-          </Link>
-        </nav>
-        <Link
-          to="/contact"
-          className="hidden items-center gap-2 rounded-full border border-gold/40 px-5 py-2 text-[0.7rem] uppercase tracking-[0.28em] text-gold transition hover:bg-gold hover:text-primary-foreground md:inline-flex"
-        >
-          Reserve
-          <ArrowUpRight className="h-3.5 w-3.5" />
-        </Link>
-      </div>
-      <div className="mx-auto max-w-7xl px-6 md:px-10">
-        <div className="divider-gold opacity-40" />
-      </div>
-    </header>
-  );
-}
 
 function Hero() {
   return (
@@ -439,7 +399,7 @@ function CollectionPage() {
 
   return (
     <div className="min-h-screen bg-background text-foreground">
-      <Nav />
+      <Navbar />
       <main>
         <Hero />
         <Filters active={active} onChange={setActive} count={items.length} />
