@@ -19,7 +19,6 @@ export default defineConfig(({ command }) => {
             specifiers: ["server-only"],
           },
         },
-        server: { entry: "server" },
       }),
       command === "build"
         ? nitro({
