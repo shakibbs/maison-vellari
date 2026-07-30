@@ -1,29 +1,42 @@
-# Welcome to your Lovable project
+# Maison Vellári — Luxury Italian Footwear
 
-This project was built with [Lovable](https://lovable.dev).
+Maison Vellári is a high-end luxury e-commerce application crafted for bespoke, handcrafted Italian footwear.
 
-## Build with Lovable
+## Features
 
-Open your project in the [Lovable editor](https://lovable.dev) and keep building.
+- **Luxury Collection Showcase**: View exclusive footwear handcrafted in Florence, Italy.
+- **Interactive Shoe Detail Modal**: View color variations, high-resolution imagery, size selection, and stock availability.
+- **Cart & Checkout Experience**: Seamless slide-over cart and comprehensive checkout modal with coupon codes and address validation.
+- **Order Tracking & History**: Client-side order persistence and tracking drawer.
+- **Admin Portal**: Manage inventory, prices, tags, and product listings with secure local state.
 
-- **Ship faster**: describe what you want to build and Lovable handles the code.
-- **Stay in sync**: connect the project to GitHub and every change made in Lovable is committed straight to your repository.
-- **Full ownership**: this code is yours. Push to your repository and your changes sync back into Lovable, ready for your next prompt.
+## Tech Stack
 
-## Development
+- **Framework**: [TanStack Start](https://tanstack.com/start) with React 19
+- **Build Tool**: [Vite 6](https://vitejs.dev)
+- **Styling**: Tailwind CSS v4 & Lucide React
+- **Language**: TypeScript
 
-Prefer working locally? You need Node.js and npm — [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating).
+## Getting Started
 
-```sh
-git clone <this-repository-url>
-cd <repository-name>
-npm i
+First, install the dependencies:
+
+```bash
+npm install
+```
+
+Then, run the development server:
+
+```bash
 npm run dev
 ```
 
-## Built with
+Open [http://localhost:8080](http://localhost:8080) in your browser to see the application.
 
-- TanStack Start
-- TypeScript
-- React
-- Tailwind CSS
+## Building for Production
+
+To build the application for production:
+
+```bash
+npm run build
+```
