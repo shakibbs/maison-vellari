@@ -157,7 +157,7 @@ function Hero() {
       </div>
       <div className="relative mx-auto max-w-7xl px-6 md:px-10">
         <motion.p
-          initial={{ opacity: 0, y: 12 }}
+          initial={false}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7 }}
           className="text-[0.7rem] uppercase tracking-[0.4em] text-gold"
@@ -165,7 +165,7 @@ function Hero() {
           The Atelier · Autumn MMXXVI
         </motion.p>
         <motion.h1
-          initial={{ opacity: 0, y: 20 }}
+          initial={false}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.9, delay: 0.1 }}
           className="mt-6 font-serif text-5xl leading-[1.05] tracking-tight text-foreground md:text-7xl lg:text-[5.5rem]"
@@ -173,7 +173,7 @@ function Hero() {
           The <span className="italic text-gold">Collection</span>
         </motion.h1>
         <motion.p
-          initial={{ opacity: 0, y: 20 }}
+          initial={false}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.9, delay: 0.2 }}
           className="mt-8 max-w-xl text-base leading-relaxed text-muted-foreground md:text-lg"
@@ -237,7 +237,7 @@ function ProductCard({
 }) {
   return (
     <motion.article
-      initial={{ opacity: 0, y: 24 }}
+      initial={false}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-80px" }}
       transition={{ duration: 0.7, delay: (index % 3) * 0.08 }}

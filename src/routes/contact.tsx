@@ -111,7 +111,7 @@ function ContactPage() {
         <div className="pointer-events-none absolute left-1/2 top-0 h-[400px] w-[800px] -translate-x-1/2 rounded-full bg-gold/5 blur-[120px]" />
         <div className="relative mx-auto max-w-7xl px-6 text-center md:px-10">
           <motion.p
-            initial={{ opacity: 0, y: 15 }}
+            initial={false}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
             className="eyebrow inline-block"
@@ -119,7 +119,7 @@ function ContactPage() {
             Private Concierge & Appointments
           </motion.p>
           <motion.h1
-            initial={{ opacity: 0, y: 20 }}
+            initial={false}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.1 }}
             className="mt-6 font-serif text-5xl leading-tight text-foreground sm:text-6xl md:text-7xl"
@@ -128,7 +128,7 @@ function ContactPage() {
             <span className="italic text-gold-gradient">The Atelier</span>
           </motion.h1>
           <motion.p
-            initial={{ opacity: 0, y: 20 }}
+            initial={false}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.2 }}
             className="mx-auto mt-6 max-w-2xl text-sm leading-relaxed text-muted-foreground md:text-base"
@@ -144,7 +144,7 @@ function ContactPage() {
         <div className="grid grid-cols-1 gap-12 lg:grid-cols-12 lg:gap-16">
           {/* Left: Interactive Inquiry Form */}
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
+            initial={false}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
             className="rounded-xl border border-border/80 bg-onyx p-8 shadow-2xl lg:col-span-7 lg:p-10"
@@ -278,7 +278,7 @@ function ContactPage() {
 
           {/* Right: Atelier Locations & Concierge Info */}
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
+            initial={false}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.3 }}
             className="flex flex-col justify-between lg:col-span-5"

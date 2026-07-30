@@ -106,7 +106,7 @@ function Hero() {
 
       <div className="relative z-10 mx-auto grid w-full max-w-7xl grid-cols-1 gap-10 px-6 pt-32 pb-20 md:px-10 lg:grid-cols-12 lg:gap-6 lg:pt-40">
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={false}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1.1, ease: [0.16, 1, 0.3, 1] }}
           className="lg:col-span-6"
@@ -166,7 +166,7 @@ function Hero() {
 
         <motion.div style={{ y, opacity }} className="relative lg:col-span-6">
           <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
+            initial={false}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 1.4, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
             className="relative aspect-[5/4] w-full"
@@ -209,7 +209,7 @@ function SectionHeader({
 }) {
   return (
     <motion.div
-      initial={{ opacity: 0, y: 30 }}
+      initial={false}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-100px" }}
       transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
@@ -247,7 +247,7 @@ function Collection({ onSelectShoe }: { onSelectShoe: (shoe: ShoeProduct) => voi
           {COLLECTION.map((p, i) => (
             <motion.div
               key={p.name}
-              initial={{ opacity: 0, y: 40 }}
+              initial={false}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-80px" }}
               transition={{ duration: 0.8, delay: i * 0.08, ease: [0.16, 1, 0.3, 1] }}
@@ -350,7 +350,7 @@ function Craft() {
 
           <div className="relative lg:col-span-7">
             <motion.div
-              initial={{ opacity: 0, scale: 1.05 }}
+              initial={false}
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 1.4, ease: [0.16, 1, 0.3, 1] }}
@@ -374,7 +374,7 @@ function Craft() {
           {STEPS.map((s, i) => (
             <motion.div
               key={s.n}
-              initial={{ opacity: 0, y: 30 }}
+              initial={false}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-80px" }}
               transition={{ duration: 0.8, delay: i * 0.1 }}
@@ -429,7 +429,7 @@ function Materials() {
           {MATERIALS.map((m, i) => (
             <motion.div
               key={m.name}
-              initial={{ opacity: 0, y: 40 }}
+              initial={false}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-80px" }}
               transition={{ duration: 0.9, delay: i * 0.12 }}
@@ -505,7 +505,7 @@ function BestSellers({ onSelectShoe }: { onSelectShoe: (shoe: ShoeProduct) => vo
         {BEST_SELLERS.map((p, i) => (
           <motion.div
             key={i}
-            initial={{ opacity: 0, y: 30 }}
+            initial={false}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.7, delay: i * 0.06 }}
@@ -569,7 +569,7 @@ function Heritage() {
         <div className="absolute inset-0 flex items-center">
           <div className="mx-auto grid w-full max-w-7xl grid-cols-1 gap-8 px-6 md:px-10 lg:grid-cols-12">
             <motion.div
-              initial={{ opacity: 0, x: -30 }}
+              initial={false}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
@@ -644,7 +644,7 @@ function Testimonials() {
           {REVIEWS.map((r, i) => (
             <motion.figure
               key={i}
-              initial={{ opacity: 0, y: 40 }}
+              initial={false}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-80px" }}
               transition={{ duration: 0.8, delay: i * 0.1 }}
@@ -681,7 +681,7 @@ function Bespoke() {
       <div className="mx-auto grid max-w-7xl grid-cols-1 gap-16 px-6 md:px-10 lg:grid-cols-12">
         <div className="lg:col-span-6">
           <motion.div
-            initial={{ opacity: 0, scale: 1.02 }}
+            initial={false}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}

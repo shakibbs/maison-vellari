@@ -23,6 +23,7 @@ export default defineConfig(({ command }) => {
       command === "build"
         ? nitro({
             preset: process.env.VERCEL || process.env.NITRO_PRESET === "vercel" ? "vercel" : undefined,
+            entryFormat: "node",
           })
         : undefined,
       react(),
